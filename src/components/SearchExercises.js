@@ -20,6 +20,7 @@ const SearchExercises = ({ setExercises, bodyPart, setBodyPart }) => {
         "https://exercisedb.p.rapidapi.com/exercises/bodyPartList",
         exerciseOptions
       );
+      console.log(bodyPartsData);
       setBodyParts(["all", ...bodyPartsData]); //now the bodyParts contain the actual data of all categories fetched using the API
     };
     fetchExercisesData(); //call the bodyPartsData method immediately the app load, so it can fetch and we populate the UI to show a use categories
@@ -104,7 +105,7 @@ const SearchExercises = ({ setExercises, bodyPart, setBodyPart }) => {
         }}
       >
         <HorizontalScrollbar
-          data={bodyParts}
+          data={bodyParts} //body parts are the categories going to be displayed in the HorizontalScrollBar, so passing this data as a prop
           bodyPart={bodyPart}
           setBodyPart={setBodyPart}
         />
