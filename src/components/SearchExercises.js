@@ -32,16 +32,18 @@ const SearchExercises = ({ setExercises, bodyPart, setBodyPart }) => {
         "https://exercisedb.p.rapidapi.com/exercises",
         exerciseOptions
       );
-      const searchedExercises = exerciseData.filter(
-        (exercise) =>
-          exercise.name.toLowerCase.includes(search) ||
-          exercise.target.toLowerCase.includes(search) ||
-          exercise.equipment.toLowerCase.includes(search) ||
-          exercise.bodypart.toLowerCase.includes(search)
-      );
+      console.log(exerciseData);
+      //filter method's return section returns either true or flse based on the conditional expression
+      const searchedExercises = exerciseData.filter((exercise) => {
+        return (
+          exercise.name.toLowerCase().includes(search) ||
+          exercise.target.toLowerCase().includes(search) ||
+          exercise.equipment.toLowerCase().includes(search) ||
+          exercise.bodyPart.toLowerCase().includes(search)
+        );
+      });
       setSearch("");
       setExercises(searchedExercises);
-      console.log(exerciseData);
     }
   };
   return (
@@ -108,6 +110,7 @@ const SearchExercises = ({ setExercises, bodyPart, setBodyPart }) => {
           data={bodyParts} //body parts are the categories going to be displayed in the HorizontalScrollBar, so passing this data as a prop
           bodyPart={bodyPart}
           setBodyPart={setBodyPart}
+          isBodyParts
         />
       </Box>
     </Stack>

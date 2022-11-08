@@ -3,7 +3,7 @@ import { Box, Typography } from "@mui/material";
 import BodyPart from "./BodyPart";
 import LeftArrowIcon from "../assets/icons/left-arrow.png";
 import RightArrowIcon from "../assets/icons/right-arrow.png";
-
+import ExerciseCard from "./ExerciseCard";
 import { ScrollMenu, VisibilityContext } from "react-horizontal-scrolling-menu"; //these will be imported from the package installed at the beginning i.e react-horizontal-scrolling-menu and will be used to display all the card in a horintal alignment
 /* The following leftArrow and right Arrow are just copy pasted. they are there to move the scroll bar using buttons 
 These arrows are just images of arrows inserted inside a Typography component of Material UI*/
@@ -27,7 +27,7 @@ const RightArrow = () => {
   );
 };
 
-const HorizontalScrollbar = ({ data, bodyPart, setBodyPart }) => {
+const HorizontalScrollbar = ({ data, bodyPart, setBodyPart, isBodyParts }) => {
   //this data is passed from the SearchExercises.js and grabbed in data variable here so it can be populated to the UI now
 
   return (
@@ -39,7 +39,15 @@ const HorizontalScrollbar = ({ data, bodyPart, setBodyPart }) => {
           title={item.id || item}
           m="0 40px"
         >
-          <BodyPart item={item} bodyPart={bodyPart} setBodyPart={setBodyPart} />{" "}
+          {isBodyParts ? (
+            <BodyPart
+              item={item}
+              bodyPart={bodyPart}
+              setBodyPart={setBodyPart}
+            />
+          ) : (
+            <ExerciseCard exercise={item} />
+          )}
           {/*here we are are passing each item from .map method to the BodyPart component so it can render in the HorizontalScrollbar */}
         </Box>
       ))}
